@@ -179,8 +179,12 @@ def submit_argo_workflow(self, cwl_workflow: str, parameters: dict) -> str:
 
 Catch specific exceptions and use structured logging via `loguru`:
 
-```python
-from loguru import logger
+````python
+try:
+    import zoo
+except ImportError:
+    from zoo_runner_common import ZooStub
+    zoo = ZooStub()
 
 def load_config(self, path: str) -> dict:
     """Load configuration from a YAML file."""
@@ -188,12 +192,12 @@ def load_config(self, path: str) -> dict:
         with open(path) as f:
             return yaml.safe_load(f)
     except FileNotFoundError:
-        logger.warning(f"Config file not found: {path}")
+        zoo.update_status(conf, 0)  
         return {}
     except yaml.YAMLError as e:
         logger.error(f"Invalid YAML in {path}: {e}")
         raise
-```
+````
 
 ### Versioning
 
@@ -250,32 +254,15 @@ Releases are managed by project maintainers:
 1. Ensure all changes are merged into `develop` and tested
 2. Update the version in `zoo_argowf_runner/__about__.py`
 3. Update `CHANGELOG.md` (if present)
-4. Merge `develop` into `main`
-5. Create and push a release tag
-6. Build and publish the package:
-
-   ```bash
-   hatch build
-   hatch publish
-   ```
+4. Create a new release on GitHub with the tag targeting the `develop` branch
+5. Once the release is published, merge `develop` into `main`
 
 ---
 
 ## Getting Help
 
 - **Bug reports / feature requests**: [Open an issue](https://github.com/ZOO-Project/zoo-argowf-runner/issues)
-- **Contact**: Email the maintainers
 
----
-
-## Code of Conduct
-
-We are committed to a welcoming and inclusive environment. When participating:
-
-- Be respectful of differing viewpoints and experiences
-- Accept constructive criticism gracefully
-- Focus on what is best for the project and community
-- Show empathy towards other contributors
 
 ---
 
