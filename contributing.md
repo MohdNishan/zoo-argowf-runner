@@ -195,7 +195,6 @@ def load_config(self, path: str) -> dict:
         zoo.update_status(conf, 0)  
         return {}
     except yaml.YAMLError as e:
-        logger.error(f"Invalid YAML in {path}: {e}")
         raise
 ````
 
