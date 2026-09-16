@@ -184,7 +184,9 @@ try:
     import zoo
 except ImportError:
     from zoo_runner_common import ZooStub
+
     zoo = ZooStub()
+
 
 def load_config(self, path: str) -> dict:
     """Load configuration from a YAML file."""
@@ -192,7 +194,7 @@ def load_config(self, path: str) -> dict:
         with open(path) as f:
             return yaml.safe_load(f)
     except FileNotFoundError:
-        zoo.update_status(conf, 0)  
+        zoo.update_status(conf, 0)
         return {}
     except yaml.YAMLError as e:
         raise
@@ -215,8 +217,8 @@ Place unit tests under `tests/` and name files `test_*.py`:
 import unittest
 from zoo_argowf_runner import ArgoWFRunner
 
-class TestArgoWFRunner(unittest.TestCase):
 
+class TestArgoWFRunner(unittest.TestCase):
     def test_initialization(self):
         """Test that the runner initializes correctly."""
         conf = {"lenv": {"message": ""}}
