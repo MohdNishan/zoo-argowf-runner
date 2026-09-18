@@ -1,9 +1,10 @@
 # Description: This module contains the ZooArgoWorkflowsRunner class which is the main class of the zoo_argowf_runner package.
-from datetime import datetime
-import uuid
-from loguru import logger
 import os
+import uuid
+from datetime import datetime
 from typing import Union
+
+from loguru import logger
 
 # Add zoo-runner-common to path
 # import sys
@@ -74,7 +75,6 @@ class ZooArgoWorkflowsRunner(BaseRunner):
         Wrap method for compatibility with BaseRunner.
         Argo Workflows runner doesn't use wrapping.
         """
-        pass
 
     def execute(self):
         self.update_status(progress=3, message="Pre-execution hook")

@@ -1,5 +1,5 @@
 # Description: This file contains the functions to create the volume related templates for the Argo workflows.
-from typing import Optional, List, Dict
+from typing import Dict, List, Optional
 
 from hera.workflows.models import (
     ConfigMapVolumeSource,

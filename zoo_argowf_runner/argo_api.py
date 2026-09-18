@@ -1,13 +1,15 @@
 # this file contains the class that handles the execution of the workflow using hera-workflows and Argo Workflows API
-from typing import Callable, Optional, Tuple
-import requests
 import json
 import os
+import time
+from typing import Callable, Optional, Tuple
+
+import requests
 from hera.workflows import WorkflowsService
 from loguru import logger
-import time
-from zoo_argowf_runner.cwl2argo import cwl_to_argo
 from zoo_runner_common.zoo_conf import CWLWorkflow
+
+from zoo_argowf_runner.cwl2argo import cwl_to_argo
 
 
 class Execution:

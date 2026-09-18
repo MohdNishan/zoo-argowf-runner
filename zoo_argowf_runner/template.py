@@ -1,9 +1,11 @@
 # Description: This file contains the functions to generate the Argo workflow templates.
 from __future__ import annotations
+
+from typing import Dict, List, Optional, Union
+
 from hera.workflows import (
     Workflow,
 )
-
 from hera.workflows.models import (
     Arguments,
     Artifact,
@@ -22,9 +24,6 @@ from hera.workflows.models import (
     Volume,
     WorkflowStep,
 )
-
-from typing import Optional, Union
-from typing import List, Dict
 
 
 class WorkflowTemplates:

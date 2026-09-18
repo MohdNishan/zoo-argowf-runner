@@ -1,5 +1,6 @@
 # Description: This file contains the function to convert a CWL workflow to an Argo workflow.
 from __future__ import annotations
+
 import os
 from typing import Optional
 
@@ -10,9 +11,9 @@ from hera.workflows.models import (
     ScriptTemplate,
     TemplateRef,
 )
+from zoo_runner_common.zoo_conf import CWLWorkflow
 
 from zoo_argowf_runner.template import WorkflowTemplates
-from zoo_runner_common.zoo_conf import CWLWorkflow
 from zoo_argowf_runner.volume import VolumeTemplates
 
 
@@ -188,7 +189,7 @@ with open("/tmp/cwl_parameters.json", "w") as f:
             script=ScriptTemplate(
                 image="docker.io/library/python:3.9",
                 resources=ResourceRequirements(
-                    requests={"memory": Quantity(__root__="1Gi"), "cpu": int(1)}
+                    requests={"memory": Quantity(__root__="1Gi"), "cpu": 1}
                 ),
                 volume_mounts=[],
                 command=["python"],

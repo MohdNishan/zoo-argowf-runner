@@ -1,10 +1,10 @@
 import os
 import pathlib
-from loguru import logger
+
 import yaml
+from loguru import logger
 
 from zoo_argowf_runner.runner import ExecutionHandler, ZooArgoWorkflowsRunner
-
 
 try:
     import zoo
