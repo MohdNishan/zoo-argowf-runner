@@ -1,8 +1,10 @@
 # this file contains the class that handles the execution of the workflow using hera-workflows and Argo Workflows API
+from __future__ import annotations
+
 import json
 import os
 import time
-from typing import Callable, Optional, Tuple
+from collections.abc import Callable
 
 import requests
 from hera.workflows import WorkflowsService
@@ -75,7 +77,7 @@ class Execution:
     @staticmethod
     def get_workflow_status(
         workflow_name: str, argo_server: str, namespace: str, token: str
-    ) -> Optional[Tuple[str, dict]]:
+    ) -> tuple[str, dict] | None:
         """
         Fetch the current status of the workflow using the Argo Workflows API.
 
@@ -109,7 +111,7 @@ class Execution:
             return None
 
     def monitor(
-        self, interval: int = 30, update_function: Optional[Callable] = None
+        self, interval: int = 30, update_function: Callable | None = None
     ) -> None:
         """
         Monitor the execution of the workflow and update the progress.
@@ -210,7 +212,7 @@ class Execution:
         """Retrieve the 'results' output parameter."""
         return self.get_execution_output_parameter("results")
 
-    def get_log(self) -> Optional[str]:
+    def get_log(self) -> str | None:
         """Retrieve the 'log' output parameter."""
         return self.get_execution_output_parameter("log")
 
@@ -218,11 +220,11 @@ class Execution:
         """Retrieve the 'usage-report' output parameter."""
         return self.get_execution_output_parameter("usage-report")
 
-    def get_stac_catalog(self) -> Optional[str]:
+    def get_stac_catalog(self) -> str | None:
         """Retrieve the 'stac-catalog' output parameter."""
         return self.get_execution_output_parameter("stac-catalog")
 
-    def get_feature_collection(self) -> Optional[str]:
+    def get_feature_collection(self) -> str | None:
         """Retrieve the 'feature-collection' output parameter."""
         return self.get_execution_output_parameter("feature-collection")
 

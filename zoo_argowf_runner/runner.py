@@ -1,8 +1,9 @@
 # Description: This module contains the ZooArgoWorkflowsRunner class which is the main class of the zoo_argowf_runner package.
+from __future__ import annotations
+
 import os
 import uuid
-from datetime import datetime
-from typing import Union
+from datetime import datetime, timezone
 
 from loguru import logger
 
@@ -31,7 +32,7 @@ class ZooArgoWorkflowsRunner(BaseRunner):
         conf,
         inputs,
         outputs,
-        execution_handler: Union[ExecutionHandler, None] = None,
+        execution_handler: ExecutionHandler | None = None,
     ):
         # BaseRunner.__init__ creates: self.conf, self.inputs, self.outputs, self.workflow
         super().__init__(cwl, inputs, conf, outputs, execution_handler)
@@ -67,7 +68,7 @@ class ZooArgoWorkflowsRunner(BaseRunner):
 
         return shorten_for_k8s(
             f"{str(self.zoo_conf.workflow_id).replace('_', '-')}-"
-            f"{str(datetime.now().timestamp()).replace('.', '')}-{uuid.uuid4()}"
+            f"{str(datetime.now(timezone.utc).timestamp()).replace('.', '')}-{uuid.uuid4()}"
         )
 
     def wrap(self):

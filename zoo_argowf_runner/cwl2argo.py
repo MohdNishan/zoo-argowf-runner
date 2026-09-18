@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import os
-from typing import Optional
 
 from hera.workflows.models import (
     Parameter,
@@ -21,12 +20,12 @@ def cwl_to_argo(
     workflow: CWLWorkflow,
     entrypoint: str,
     argo_wf_name: str,
-    inputs: Optional[dict] = None,
-    volume_size: Optional[str] = "10Gi",
-    max_cores: Optional[int] = 4,
-    max_ram: Optional[str] = "4Gi",
-    storage_class: Optional[str] = "standard",
-    namespace: Optional[str] = "default",
+    inputs: dict | None = None,
+    volume_size: str | None = "10Gi",
+    max_cores: int | None = 4,
+    max_ram: str | None = "4Gi",
+    storage_class: str | None = "standard",
+    namespace: str | None = "default",
     **kwargs,
 ):
     """
