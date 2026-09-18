@@ -49,7 +49,7 @@ def cwl_to_argo(
     prepare_content = f"""
 import json
 
-content = json.loads({json.dumps(json.dumps(workflow.raw_cwl))})
+content = json.loads(\"\"\"{workflow.raw_cwl}\"\"\".replace("'", '"'))
 
 inputs = "{{{{inputs.parameters.inputs}}}}"
 
