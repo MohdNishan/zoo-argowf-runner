@@ -68,7 +68,7 @@ class ZooArgoWorkflowsRunner(BaseRunner):
 
         return shorten_for_k8s(
             f"{str(self.zoo_conf.workflow_id).replace('_', '-')}-"
-            f"{str(datetime.now(timezone.utc).timestamp()).replace('.', '')}-{uuid.uuid4()}"
+            f"{str(datetime.now(tz=timezone.utc).timestamp()).replace('.', '')}-{uuid.uuid4()}"
         )
 
     def wrap(self):
