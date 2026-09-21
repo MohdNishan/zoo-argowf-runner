@@ -216,3 +216,4 @@ with open("/tmp/cwl_parameters.json", "w") as f:
         templates=templates,
         namespace=namespace,
     )
+    
