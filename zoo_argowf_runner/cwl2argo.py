@@ -1,6 +1,7 @@
 # Description: This file contains the function to convert a CWL workflow to an Argo workflow.
 from __future__ import annotations
 
+import json
 import os
 
 from hera.workflows.models import (
@@ -49,7 +50,7 @@ def cwl_to_argo(
     prepare_content = f"""
 import json
 
-content = json.loads(\"\"\"{workflow.raw_cwl}\"\"\".replace("'", '"'))
+content = json.loads({json.dumps(json.dumps(workflow.raw_cwl))})
 
 inputs = "{{{{inputs.parameters.inputs}}}}"
 
